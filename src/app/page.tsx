@@ -19,7 +19,7 @@ export default function Home() {
               <Link href="/marketing/services" className="text-slate-600 hover:text-slate-900">
                 Services
               </Link>
-              <Link href="/marketing/products" className="text-slate-600 hover:text-slate-900">
+              <Link href="/products" className="text-slate-600 hover:text-slate-900">
                 Products
               </Link>
               <Link href="/marketing/contact" className="text-slate-600 hover:text-slate-900">
