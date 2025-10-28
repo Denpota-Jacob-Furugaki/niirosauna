@@ -60,7 +60,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild>
-              <Link href="https://niiro.win-win.partners/store">Shop Now</Link>
+              <Link href="/products">Shop Now</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="/marketing/about">Learn More</Link>
@@ -79,7 +79,7 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <Button asChild className="w-full">
-                <Link href="https://niiro.win-win.partners/store">Browse Products</Link>
+                <Link href="/products">Browse Products</Link>
               </Button>
             </CardContent>
           </Card>
@@ -107,7 +107,7 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <Button asChild className="w-full">
-                <Link href="https://niiro.win-win.partners/booking">Book Now</Link>
+                <Link href="/marketing/contact">Book Now</Link>
               </Button>
             </CardContent>
           </Card>
