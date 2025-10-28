@@ -159,9 +159,6 @@ export default function CartPage() {
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">
                         {item.name}
                       </h3>
-                      <p className="text-slate-600 text-sm mb-4">
-                        {item.shortDescription}
-                      </p>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
                           <div className="flex items-center space-x-2">
