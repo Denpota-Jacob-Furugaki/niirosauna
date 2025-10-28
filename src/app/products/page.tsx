@@ -56,31 +56,37 @@ export default function ProductsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-slate-900">
-                Niiro
+              <Link href="/" className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">N</span>
+                </div>
+                <div>
+                  <div className="text-xl font-bold text-slate-900">Niiro</div>
+                  <div className="text-sm text-slate-600">サウナ</div>
+                </div>
               </Link>
             </div>
             <nav className="hidden md:flex space-x-8">
               <Link href="/marketing/about" className="text-slate-600 hover:text-slate-900">
-                About
+                会社概要
               </Link>
               <Link href="/marketing/services" className="text-slate-600 hover:text-slate-900">
-                Services
+                サービス
               </Link>
               <Link href="/products" className="text-slate-900 font-medium">
-                Products
+                商品一覧
               </Link>
               <Link href="/marketing/contact" className="text-slate-600 hover:text-slate-900">
-                Contact
+                お問い合わせ
               </Link>
             </nav>
             <div className="flex items-center space-x-4">
               <Button variant="outline" asChild>
-                <Link href="/login">Login</Link>
+                <Link href="/login">ログイン</Link>
               </Button>
               <Button variant="outline" asChild className="relative">
                 <Link href="/cart">
-                  🛒 Cart ({getTotalItems()})
+                  🛒 カート ({getTotalItems()})
                 </Link>
               </Button>
             </div>
@@ -93,18 +99,18 @@ export default function ProductsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Premium Sauna Equipment
+              プレミアムサウナ機器
             </h1>
             <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
-              Discover our carefully curated selection of professional sauna equipment, 
-              wellness products, and accessories designed for the ultimate sauna experience.
+              プロ仕様のサウナ機器、ウェルネス商品、アクセサリーの厳選コレクション。
+              究極のサウナ体験のために設計された商品をご覧ください。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
-                <Link href="#products">Shop Now</Link>
+                <Link href="#products">今すぐ購入</Link>
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900" asChild>
-                <Link href="#categories">Browse Categories</Link>
+                <Link href="#categories">カテゴリを見る</Link>
               </Button>
             </div>
           </div>
@@ -119,11 +125,11 @@ export default function ProductsPage() {
               {/* Search */}
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
-                  Search Products
+                  商品を検索
                 </label>
                 <Input
                   type="text"
-                  placeholder="Search products..."
+                  placeholder="商品を検索..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full"
@@ -133,14 +139,14 @@ export default function ProductsPage() {
               {/* Category Filter */}
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
-                  Category
+                  カテゴリ
                 </label>
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
                   className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500"
                 >
-                  <option value="all">All Categories</option>
+                  <option value="all">すべてのカテゴリ</option>
                   {categories.map((category) => (
                     <option key={category.id} value={category.id}>
                       {category.name} ({category.productCount})
@@ -152,24 +158,24 @@ export default function ProductsPage() {
               {/* Sort */}
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
-                  Sort By
+                  並び替え
                 </label>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
                   className="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500"
                 >
-                  <option value="name">Name A-Z</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                  <option value="newest">Newest First</option>
+                  <option value="name">商品名 A-Z</option>
+                  <option value="price-low">価格: 安い順</option>
+                  <option value="price-high">価格: 高い順</option>
+                  <option value="newest">新着順</option>
                 </select>
               </div>
 
               {/* View Mode */}
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
-                  View
+                  表示
                 </label>
                 <div className="flex space-x-2">
                   <Button
@@ -177,14 +183,14 @@ export default function ProductsPage() {
                     size="sm"
                     onClick={() => setViewMode("grid")}
                   >
-                    Grid
+                    グリッド
                   </Button>
                   <Button
                     variant={viewMode === "list" ? "default" : "outline"}
                     size="sm"
                     onClick={() => setViewMode("list")}
                   >
-                    List
+                    リスト
                   </Button>
                 </div>
               </div>
@@ -202,28 +208,28 @@ export default function ProductsPage() {
               size="sm"
               onClick={() => setSelectedCategory("all")}
             >
-              All Products ({products.length})
+              すべての商品 ({products.length})
             </Button>
             <Button
               variant="outline"
               size="sm"
               onClick={() => setSelectedCategory("featured")}
             >
-              ⭐ Featured ({getFeaturedProducts().length})
+              ⭐ おすすめ ({getFeaturedProducts().length})
             </Button>
             <Button
               variant="outline"
               size="sm"
               onClick={() => setSelectedCategory("new")}
             >
-              🆕 New Arrivals ({getNewArrivals().length})
+              🆕 新商品 ({getNewArrivals().length})
             </Button>
             <Button
               variant="outline"
               size="sm"
               onClick={() => setSelectedCategory("sale")}
             >
-              🔥 On Sale ({getOnSaleProducts().length})
+              🔥 セール ({getOnSaleProducts().length})
             </Button>
           </div>
         </div>
@@ -233,14 +239,14 @@ export default function ProductsPage() {
       <main id="products" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-slate-900 mb-4">
-            {selectedCategory === "all" ? "All Products" : 
-             selectedCategory === "featured" ? "Featured Products" :
-             selectedCategory === "new" ? "New Arrivals" :
-             selectedCategory === "sale" ? "On Sale" :
-             categories.find(c => c.id === selectedCategory)?.name || "Products"}
+            {selectedCategory === "all" ? "すべての商品" : 
+             selectedCategory === "featured" ? "おすすめ商品" :
+             selectedCategory === "new" ? "新商品" :
+             selectedCategory === "sale" ? "セール商品" :
+             categories.find(c => c.id === selectedCategory)?.name || "商品"}
           </h2>
           <p className="text-slate-600">
-            {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found
+            {filteredProducts.length}件の商品が見つかりました
           </p>
         </div>
 
@@ -261,17 +267,17 @@ export default function ProductsPage() {
                 <div className="absolute top-4 left-4 flex flex-col gap-2">
                   {product.newArrival && (
                     <Badge className="bg-green-500 text-white px-3 py-1">
-                      🆕 New
+                      🆕 新商品
                     </Badge>
                   )}
                   {product.onSale && (
                     <Badge className="bg-red-500 text-white px-3 py-1">
-                      🔥 Sale
+                      🔥 セール
                     </Badge>
                   )}
                   {!product.inStock && (
                     <Badge className="bg-gray-500 text-white px-3 py-1">
-                      Out of Stock
+                      在庫切れ
                     </Badge>
                   )}
                 </div>
@@ -295,17 +301,17 @@ export default function ProductsPage() {
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-2">
                     <span className="text-3xl font-bold text-slate-900">
-                      ${product.price}
+                      ¥{product.price.toLocaleString()}
                     </span>
                     {product.originalPrice && (
                       <span className="text-lg text-slate-500 line-through">
-                        ${product.originalPrice}
+                        ¥{product.originalPrice.toLocaleString()}
                       </span>
                     )}
                   </div>
                   {product.originalPrice && (
                     <Badge className="bg-green-100 text-green-800">
-                      Save ${(product.originalPrice - product.price).toFixed(0)}
+                      節約 ¥{(product.originalPrice - product.price).toLocaleString()}
                     </Badge>
                   )}
                 </div>
@@ -314,7 +320,7 @@ export default function ProductsPage() {
                   <div className="flex space-x-2">
                     <Button asChild className="flex-1">
                       <Link href={`/products/${product.slug}`}>
-                        View Details
+                        詳細を見る
                       </Link>
                     </Button>
                     <Button 
@@ -344,7 +350,7 @@ export default function ProductsPage() {
                     disabled={!product.inStock}
                     className="w-full"
                   >
-                    {product.inStock ? 'Add to Cart' : 'Notify When Available'}
+                    {product.inStock ? 'カートに追加' : '入荷通知'}
                   </Button>
                 </div>
               </CardContent>
@@ -357,16 +363,16 @@ export default function ProductsPage() {
           <div className="text-center py-16">
             <div className="text-6xl mb-4">🔍</div>
             <h3 className="text-2xl font-semibold text-slate-900 mb-4">
-              No products found
+              商品が見つかりません
             </h3>
             <p className="text-slate-600 mb-8">
-              Try adjusting your search or filter criteria
+              検索条件やフィルターを調整してみてください
             </p>
             <Button onClick={() => {
               setSearchQuery("");
               setSelectedCategory("all");
             }}>
-              Clear Filters
+              フィルターをクリア
             </Button>
           </div>
         )}
@@ -379,43 +385,43 @@ export default function ProductsPage() {
             <div>
               <h3 className="text-2xl font-bold mb-4">Niiro</h3>
               <p className="text-slate-300 mb-4">
-                Your trusted partner for premium sauna equipment and wellness solutions.
+                プレミアムサウナ機器とウェルネスソリューションの信頼できるパートナー。
               </p>
               <div className="flex space-x-4">
-                <span className="text-sm text-slate-400">🚚 Free Shipping</span>
-                <span className="text-sm text-slate-400">🔒 Secure Payment</span>
+                <span className="text-sm text-slate-400">🚚 送料無料</span>
+                <span className="text-sm text-slate-400">🔒 安全な決済</span>
               </div>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Shop</h4>
+              <h4 className="text-lg font-semibold mb-4">ショップ</h4>
               <ul className="space-y-2">
-                <li><Link href="/products" className="text-slate-300 hover:text-white">All Products</Link></li>
-                <li><Link href="/products?category=sauna-equipment" className="text-slate-300 hover:text-white">Sauna Equipment</Link></li>
-                <li><Link href="/products?category=wellness-products" className="text-slate-300 hover:text-white">Wellness Products</Link></li>
-                <li><Link href="/cart" className="text-slate-300 hover:text-white">Shopping Cart</Link></li>
+                <li><Link href="/products" className="text-slate-300 hover:text-white">すべての商品</Link></li>
+                <li><Link href="/products?category=sauna-equipment" className="text-slate-300 hover:text-white">サウナ機器</Link></li>
+                <li><Link href="/products?category=wellness-products" className="text-slate-300 hover:text-white">ウェルネス商品</Link></li>
+                <li><Link href="/cart" className="text-slate-300 hover:text-white">ショッピングカート</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Support</h4>
+              <h4 className="text-lg font-semibold mb-4">サポート</h4>
               <ul className="space-y-2">
-                <li><Link href="/marketing/about" className="text-slate-300 hover:text-white">About Us</Link></li>
-                <li><Link href="/marketing/contact" className="text-slate-300 hover:text-white">Contact</Link></li>
-                <li><Link href="/marketing/services" className="text-slate-300 hover:text-white">Services</Link></li>
-                <li><Link href="/shipping" className="text-slate-300 hover:text-white">Shipping Info</Link></li>
+                <li><Link href="/marketing/about" className="text-slate-300 hover:text-white">会社概要</Link></li>
+                <li><Link href="/marketing/contact" className="text-slate-300 hover:text-white">お問い合わせ</Link></li>
+                <li><Link href="/marketing/services" className="text-slate-300 hover:text-white">サービス</Link></li>
+                <li><Link href="/shipping" className="text-slate-300 hover:text-white">配送情報</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Account</h4>
+              <h4 className="text-lg font-semibold mb-4">アカウント</h4>
               <ul className="space-y-2">
-                <li><Link href="/login" className="text-slate-300 hover:text-white">Login</Link></li>
-                <li><Link href="/register" className="text-slate-300 hover:text-white">Register</Link></li>
-                <li><Link href="/orders" className="text-slate-300 hover:text-white">Order History</Link></li>
-                <li><Link href="/wishlist" className="text-slate-300 hover:text-white">Wishlist</Link></li>
+                <li><Link href="/login" className="text-slate-300 hover:text-white">ログイン</Link></li>
+                <li><Link href="/register" className="text-slate-300 hover:text-white">新規登録</Link></li>
+                <li><Link href="/orders" className="text-slate-300 hover:text-white">注文履歴</Link></li>
+                <li><Link href="/wishlist" className="text-slate-300 hover:text-white">お気に入り</Link></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-slate-700 mt-12 pt-8 text-center text-slate-300">
-            <p>&copy; 2024 Niiro. All rights reserved. | Premium Sauna Equipment & Wellness Solutions</p>
+            <p>&copy; 2024 Niiro. All rights reserved. | プレミアムサウナ機器 & ウェルネスソリューション</p>
           </div>
         </div>
       </footer>

@@ -19,11 +19,6 @@ const nextConfig: NextConfig = {
         destination: '/marketing/services',
         permanent: true,
       },
-      {
-        source: '/products',
-        destination: '/marketing/products',
-        permanent: true,
-      },
       // E-commerce deep links to W2
       {
         source: '/store',

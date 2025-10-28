@@ -33,31 +33,37 @@ export default function ProductPage({ params }: ProductPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-slate-900">
-                Niiro
+              <Link href="/" className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">N</span>
+                </div>
+                <div>
+                  <div className="text-xl font-bold text-slate-900">Niiro</div>
+                  <div className="text-sm text-slate-600">サウナ</div>
+                </div>
               </Link>
             </div>
             <nav className="hidden md:flex space-x-8">
               <Link href="/marketing/about" className="text-slate-600 hover:text-slate-900">
-                About
+                会社概要
               </Link>
               <Link href="/marketing/services" className="text-slate-600 hover:text-slate-900">
-                Services
+                サービス
               </Link>
               <Link href="/products" className="text-slate-900 font-medium">
-                Products
+                商品一覧
               </Link>
               <Link href="/marketing/contact" className="text-slate-600 hover:text-slate-900">
-                Contact
+                お問い合わせ
               </Link>
             </nav>
             <div className="flex items-center space-x-4">
               <Button variant="outline" asChild>
-                <Link href="/login">Login</Link>
+                <Link href="/login">ログイン</Link>
               </Button>
               <Button variant="outline" asChild className="relative">
                 <Link href="/cart">
-                  🛒 Cart ({getTotalItems()})
+                  🛒 カート ({getTotalItems()})
                 </Link>
               </Button>
             </div>
@@ -69,9 +75,9 @@ export default function ProductPage({ params }: ProductPageProps) {
       <div className="bg-slate-50 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-slate-500 hover:text-slate-700">Home</Link>
+            <Link href="/" className="text-slate-500 hover:text-slate-700">ホーム</Link>
             <span className="text-slate-400">/</span>
-            <Link href="/products" className="text-slate-500 hover:text-slate-700">Products</Link>
+            <Link href="/products" className="text-slate-500 hover:text-slate-700">商品一覧</Link>
             <span className="text-slate-400">/</span>
             <span className="text-slate-900 font-medium">{product.name}</span>
           </nav>
@@ -116,17 +122,17 @@ export default function ProductPage({ params }: ProductPageProps) {
               <div className="flex items-center gap-3 mb-4">
                 {product.newArrival && (
                   <Badge className="bg-green-500 text-white px-3 py-1">
-                    🆕 New Arrival
+                    🆕 新商品
                   </Badge>
                 )}
                 {product.onSale && (
                   <Badge className="bg-red-500 text-white px-3 py-1">
-                    🔥 On Sale
+                    🔥 セール
                   </Badge>
                 )}
                 {!product.inStock && (
                   <Badge className="bg-gray-500 text-white px-3 py-1">
-                    Out of Stock
+                    在庫切れ
                   </Badge>
                 )}
                 <Badge variant="outline" className="bg-slate-100">
@@ -147,16 +153,16 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="bg-slate-50 rounded-2xl p-6">
               <div className="flex items-center space-x-4 mb-4">
                 <span className="text-5xl font-bold text-slate-900">
-                  ${product.price}
+                  ¥{product.price.toLocaleString()}
                 </span>
                 {product.originalPrice && (
                   <span className="text-3xl text-slate-500 line-through">
-                    ${product.originalPrice}
+                    ¥{product.originalPrice.toLocaleString()}
                   </span>
                 )}
                 {product.originalPrice && (
                   <Badge className="bg-green-100 text-green-800 text-lg px-4 py-2">
-                    Save ${(product.originalPrice - product.price).toFixed(0)}
+                    節約 ¥{(product.originalPrice - product.price).toLocaleString()}
                   </Badge>
                 )}
               </div>
@@ -166,8 +172,8 @@ export default function ProductPage({ params }: ProductPageProps) {
                 <div className={`w-4 h-4 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}></div>
                 <span className="text-lg text-slate-600">
                   {product.inStock 
-                    ? `✅ In Stock (${product.stockQuantity} available)`
-                    : '❌ Out of Stock'
+                    ? `✅ 在庫あり (${product.stockQuantity}個)`
+                    : '❌ 在庫切れ'
                   }
                 </span>
               </div>
@@ -187,7 +193,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                     disabled={!product.inStock}
                     className="flex-1 text-lg py-6"
                   >
-                    {product.inStock ? '🛒 Add to Cart' : 'Notify When Available'}
+                    {product.inStock ? '🛒 カートに追加' : '入荷通知'}
                   </Button>
                   <Button 
                     size="lg" 
@@ -196,15 +202,15 @@ export default function ProductPage({ params }: ProductPageProps) {
                     className="px-8 text-lg py-6"
                   >
                     <Link href="/checkout">
-                      Buy Now
+                      今すぐ購入
                     </Link>
                   </Button>
                 </div>
                 
                 <div className="flex items-center justify-center space-x-8 text-sm text-slate-600">
-                  <span>🚚 Free Shipping</span>
-                  <span>🔒 Secure Payment</span>
-                  <span>↩️ Easy Returns</span>
+                  <span>🚚 送料無料</span>
+                  <span>🔒 安全な決済</span>
+                  <span>↩️ 簡単返品</span>
                 </div>
               </div>
             </div>
@@ -212,12 +218,12 @@ export default function ProductPage({ params }: ProductPageProps) {
             {/* Product Info */}
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <h3 className="font-semibold text-slate-900 mb-2">SKU</h3>
+                <h3 className="font-semibold text-slate-900 mb-2">商品コード</h3>
                 <p className="text-slate-600 font-mono">{product.sku}</p>
               </div>
               
               <div>
-                <h3 className="font-semibold text-slate-900 mb-2">Category</h3>
+                <h3 className="font-semibold text-slate-900 mb-2">カテゴリ</h3>
                 <Badge variant="outline" className="bg-slate-100">
                   {category?.name}
                 </Badge>
@@ -226,7 +232,7 @@ export default function ProductPage({ params }: ProductPageProps) {
 
             {product.tags.length > 0 && (
               <div>
-                <h3 className="font-semibold text-slate-900 mb-4">Tags</h3>
+                <h3 className="font-semibold text-slate-900 mb-4">タグ</h3>
                 <div className="flex flex-wrap gap-2">
                   {product.tags.map((tag) => (
                     <Badge key={tag} variant="secondary" className="bg-slate-100 text-slate-700">
@@ -242,7 +248,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         {/* Specifications */}
         {product.specifications && Object.keys(product.specifications).length > 0 && (
           <div className="mt-20">
-            <h2 className="text-3xl font-bold text-slate-900 mb-8">Specifications</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-8">仕様</h2>
             <Card className="shadow-lg">
               <CardContent className="p-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -261,7 +267,7 @@ export default function ProductPage({ params }: ProductPageProps) {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div className="mt-20">
-            <h2 className="text-3xl font-bold text-slate-900 mb-8">You Might Also Like</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-8">関連商品</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map((relatedProduct) => (
                 <Card key={relatedProduct.id} className="group hover:shadow-xl transition-all duration-300">
@@ -276,12 +282,12 @@ export default function ProductPage({ params }: ProductPageProps) {
                     <div className="absolute top-3 left-3 flex flex-col gap-1">
                       {relatedProduct.newArrival && (
                         <Badge className="bg-green-500 text-white text-xs">
-                          New
+                          新商品
                         </Badge>
                       )}
                       {relatedProduct.onSale && (
                         <Badge className="bg-red-500 text-white text-xs">
-                          Sale
+                          セール
                         </Badge>
                       )}
                     </div>
@@ -296,17 +302,17 @@ export default function ProductPage({ params }: ProductPageProps) {
                     </p>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xl font-bold text-slate-900">
-                        ${relatedProduct.price}
+                        ¥{relatedProduct.price.toLocaleString()}
                       </span>
                       {relatedProduct.originalPrice && (
                         <span className="text-sm text-slate-500 line-through">
-                          ${relatedProduct.originalPrice}
+                          ¥{relatedProduct.originalPrice.toLocaleString()}
                         </span>
                       )}
                     </div>
                     <Button asChild className="w-full">
                       <Link href={`/products/${relatedProduct.slug}`}>
-                        View Details
+                        詳細を見る
                       </Link>
                     </Button>
                   </CardContent>
@@ -324,43 +330,39 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div>
               <h3 className="text-2xl font-bold mb-4">Niiro</h3>
               <p className="text-slate-300 mb-4">
-                Your trusted partner for premium sauna equipment and wellness solutions.
+                プレミアムサウナ機器とウェルネスソリューションの信頼できるパートナー。
               </p>
-              <div className="flex space-x-4">
-                <span className="text-sm text-slate-400">🚚 Free Shipping</span>
-                <span className="text-sm text-slate-400">🔒 Secure Payment</span>
-              </div>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Shop</h4>
+              <h4 className="text-lg font-semibold mb-4">ショップ</h4>
               <ul className="space-y-2">
-                <li><Link href="/products" className="text-slate-300 hover:text-white">All Products</Link></li>
-                <li><Link href="/products?category=sauna-equipment" className="text-slate-300 hover:text-white">Sauna Equipment</Link></li>
-                <li><Link href="/products?category=wellness-products" className="text-slate-300 hover:text-white">Wellness Products</Link></li>
-                <li><Link href="/cart" className="text-slate-300 hover:text-white">Shopping Cart</Link></li>
+                <li><Link href="/products" className="text-slate-300 hover:text-white">すべての商品</Link></li>
+                <li><Link href="/products?category=sauna-equipment" className="text-slate-300 hover:text-white">サウナ機器</Link></li>
+                <li><Link href="/products?category=wellness-products" className="text-slate-300 hover:text-white">ウェルネス商品</Link></li>
+                <li><Link href="/cart" className="text-slate-300 hover:text-white">ショッピングカート</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Support</h4>
+              <h4 className="text-lg font-semibold mb-4">サポート</h4>
               <ul className="space-y-2">
-                <li><Link href="/marketing/about" className="text-slate-300 hover:text-white">About Us</Link></li>
-                <li><Link href="/marketing/contact" className="text-slate-300 hover:text-white">Contact</Link></li>
-                <li><Link href="/marketing/services" className="text-slate-300 hover:text-white">Services</Link></li>
-                <li><Link href="/shipping" className="text-slate-300 hover:text-white">Shipping Info</Link></li>
+                <li><Link href="/marketing/about" className="text-slate-300 hover:text-white">会社概要</Link></li>
+                <li><Link href="/marketing/contact" className="text-slate-300 hover:text-white">お問い合わせ</Link></li>
+                <li><Link href="/marketing/services" className="text-slate-300 hover:text-white">サービス</Link></li>
+                <li><Link href="/shipping" className="text-slate-300 hover:text-white">配送情報</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Account</h4>
+              <h4 className="text-lg font-semibold mb-4">アカウント</h4>
               <ul className="space-y-2">
-                <li><Link href="/login" className="text-slate-300 hover:text-white">Login</Link></li>
-                <li><Link href="/register" className="text-slate-300 hover:text-white">Register</Link></li>
-                <li><Link href="/orders" className="text-slate-300 hover:text-white">Order History</Link></li>
-                <li><Link href="/wishlist" className="text-slate-300 hover:text-white">Wishlist</Link></li>
+                <li><Link href="/login" className="text-slate-300 hover:text-white">ログイン</Link></li>
+                <li><Link href="/register" className="text-slate-300 hover:text-white">新規登録</Link></li>
+                <li><Link href="/orders" className="text-slate-300 hover:text-white">注文履歴</Link></li>
+                <li><Link href="/wishlist" className="text-slate-300 hover:text-white">お気に入り</Link></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-slate-700 mt-12 pt-8 text-center text-slate-300">
-            <p>&copy; 2024 Niiro. All rights reserved. | Premium Sauna Equipment & Wellness Solutions</p>
+            <p>&copy; 2024 Niiro. All rights reserved. | プレミアムサウナ機器 & ウェルネスソリューション</p>
           </div>
         </div>
       </footer>

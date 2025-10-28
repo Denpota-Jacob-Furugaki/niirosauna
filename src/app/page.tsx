@@ -27,31 +27,31 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="text-xl font-bold text-slate-900">Niiro</div>
-                  <div className="text-sm text-slate-600">SAUNA</div>
+                  <div className="text-sm text-slate-600">サウナ</div>
                 </div>
               </Link>
             </div>
             <nav className="hidden md:flex space-x-8">
               <Link href="/marketing/about" className="text-slate-600 hover:text-slate-900">
-                About
+                会社概要
               </Link>
               <Link href="/marketing/services" className="text-slate-600 hover:text-slate-900">
-                Services
+                サービス
               </Link>
               <Link href="/products" className="text-slate-900 font-medium">
-                Products
+                商品一覧
               </Link>
               <Link href="/marketing/contact" className="text-slate-600 hover:text-slate-900">
-                Contact
+                お問い合わせ
               </Link>
             </nav>
             <div className="flex items-center space-x-4">
               <Button variant="outline" asChild>
-                <Link href="/login">Login</Link>
+                <Link href="/login">ログイン</Link>
               </Button>
               <Button variant="outline" asChild className="relative">
                 <Link href="/cart">
-                  🛒 Cart ({getTotalItems()})
+                  🛒 カート ({getTotalItems()})
                 </Link>
               </Button>
             </div>
@@ -65,32 +65,32 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Transform Your Home Into a
-                <span className="text-red-500"> Premium Sauna</span>
+                自宅で極上の
+                <span className="text-red-500"> サウナ体験</span>
               </h1>
               <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-                Experience the ultimate relaxation with our professional-grade sauna equipment. 
-                Create your perfect home sauna with Niiro's premium collection.
+                プロ仕様のサウナ機器で、最高のリラクゼーションを体験してください。
+                Niiroのプレミアムコレクションで、完璧なホームサウナを作りましょう。
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="bg-red-600 hover:bg-red-700 text-lg px-8 py-4">
-                  Shop Now →
+                  商品を見る →
                 </Button>
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900 text-lg px-8 py-4">
-                  View Products
+                  商品一覧
                 </Button>
               </div>
             </div>
             <div className="relative">
               <Image
                 src="/images/products/0/saunaop1_LL.jpg"
-                alt="Premium Sauna Equipment"
+                alt="プレミアムサウナ機器"
                 width={600}
                 height={400}
                 className="rounded-2xl shadow-2xl"
               />
               <div className="absolute -top-4 -right-4 bg-red-600 text-white px-6 py-3 rounded-full font-bold text-lg">
-                #1 Best Seller
+                #1 ベストセラー
               </div>
             </div>
           </div>
@@ -104,22 +104,22 @@ export default function Home() {
             {/* Free Shipping Banner */}
             <div className="bg-green-600 text-white p-6 rounded-xl text-center">
               <div className="text-3xl mb-2">🚚</div>
-              <h3 className="text-xl font-bold mb-2">Free Shipping</h3>
-              <p className="text-green-100">On all orders over $100</p>
+              <h3 className="text-xl font-bold mb-2">送料無料</h3>
+              <p className="text-green-100">10,000円以上のご注文で送料無料</p>
             </div>
             
             {/* Premium Quality Banner */}
             <div className="bg-blue-600 text-white p-6 rounded-xl text-center">
               <div className="text-3xl mb-2">⭐</div>
-              <h3 className="text-xl font-bold mb-2">Premium Quality</h3>
-              <p className="text-blue-100">Professional-grade equipment</p>
+              <h3 className="text-xl font-bold mb-2">プレミアム品質</h3>
+              <p className="text-blue-100">プロ仕様の機器</p>
             </div>
             
             {/* Easy Setup Banner */}
             <div className="bg-purple-600 text-white p-6 rounded-xl text-center">
               <div className="text-3xl mb-2">⚡</div>
-              <h3 className="text-xl font-bold mb-2">Easy Setup</h3>
-              <p className="text-purple-100">Quick installation guide included</p>
+              <h3 className="text-xl font-bold mb-2">簡単セットアップ</h3>
+              <p className="text-purple-100">分かりやすい取扱説明書付き</p>
             </div>
           </div>
         </div>
@@ -129,15 +129,15 @@ export default function Home() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Featured Products</h2>
-            <p className="text-xl text-slate-600">Our most popular sauna equipment and accessories</p>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">おすすめ商品</h2>
+            <p className="text-xl text-slate-600">人気のサウナ機器とアクセサリー</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProducts.slice(0, 6).map((product) => (
               <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
                 <div className="relative overflow-hidden">
-                  <Image
+        <Image
                     src={product.thumbnail}
                     alt={product.name}
                     width={400}
@@ -147,12 +147,12 @@ export default function Home() {
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     {product.newArrival && (
                       <Badge className="bg-green-500 text-white px-3 py-1">
-                        🆕 New
+                        🆕 新商品
                       </Badge>
                     )}
                     {product.onSale && (
                       <Badge className="bg-red-500 text-white px-3 py-1">
-                        🔥 Sale
+                        🔥 セール
                       </Badge>
                     )}
                   </div>
@@ -169,17 +169,17 @@ export default function Home() {
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center space-x-2">
                       <span className="text-3xl font-bold text-slate-900">
-                        ${product.price}
+                        ¥{product.price.toLocaleString()}
                       </span>
                       {product.originalPrice && (
                         <span className="text-lg text-slate-500 line-through">
-                          ${product.originalPrice}
+                          ¥{product.originalPrice.toLocaleString()}
                         </span>
                       )}
                     </div>
                     {product.originalPrice && (
                       <Badge className="bg-green-100 text-green-800">
-                        Save ${(product.originalPrice - product.price).toFixed(0)}
+                        節約 ¥{(product.originalPrice - product.price).toLocaleString()}
                       </Badge>
                     )}
                   </div>
@@ -188,7 +188,7 @@ export default function Home() {
                     <div className="flex space-x-2">
                       <Button asChild className="flex-1">
                         <Link href={`/products/${product.slug}`}>
-                          View Details
+                          詳細を見る
                         </Link>
                       </Button>
                       <Button 
@@ -216,7 +216,7 @@ export default function Home() {
                       })}
                       className="w-full"
                     >
-                      Add to Cart
+                      カートに追加
                     </Button>
                   </div>
                 </CardContent>
@@ -226,7 +226,7 @@ export default function Home() {
           
           <div className="text-center mt-12">
             <Button size="lg" asChild>
-              <Link href="/products">View All Products</Link>
+              <Link href="/products">すべての商品を見る</Link>
             </Button>
           </div>
         </div>
@@ -236,8 +236,8 @@ export default function Home() {
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">New Arrivals</h2>
-            <p className="text-xl text-slate-600">Latest additions to our sauna collection</p>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">新商品</h2>
+            <p className="text-xl text-slate-600">サウナコレクションの最新商品</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -253,7 +253,7 @@ export default function Home() {
                   />
                   <div className="absolute top-3 left-3">
                     <Badge className="bg-green-500 text-white">
-                      🆕 New
+                      🆕 新商品
                     </Badge>
                   </div>
                 </div>
@@ -267,17 +267,17 @@ export default function Home() {
                   </p>
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xl font-bold text-slate-900">
-                      ${product.price}
+                      ¥{product.price.toLocaleString()}
                     </span>
                     {product.originalPrice && (
                       <span className="text-sm text-slate-500 line-through">
-                        ${product.originalPrice}
+                        ¥{product.originalPrice.toLocaleString()}
                       </span>
                     )}
                   </div>
                   <Button asChild className="w-full">
                     <Link href={`/products/${product.slug}`}>
-                      View Details
+                      詳細を見る
                     </Link>
                   </Button>
                 </CardContent>
@@ -291,15 +291,15 @@ export default function Home() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">On Sale</h2>
-            <p className="text-xl text-slate-600">Limited time offers on premium sauna equipment</p>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">セール商品</h2>
+            <p className="text-xl text-slate-600">プレミアムサウナ機器の期間限定オファー</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {onSaleProducts.slice(0, 3).map((product) => (
               <Card key={product.id} className="group hover:shadow-xl transition-all duration-300 border-2 border-red-200">
                 <div className="relative overflow-hidden">
-                  <Image
+            <Image
                     src={product.thumbnail}
                     alt={product.name}
                     width={400}
@@ -308,12 +308,12 @@ export default function Home() {
                   />
                   <div className="absolute top-4 left-4">
                     <Badge className="bg-red-500 text-white px-4 py-2 text-lg">
-                      🔥 SALE
+                      🔥 セール
                     </Badge>
                   </div>
                   <div className="absolute top-4 right-4">
                     <Badge className="bg-green-100 text-green-800 px-3 py-1">
-                      Save ${(product.originalPrice! - product.price).toFixed(0)}
+                      節約 ¥{(product.originalPrice! - product.price).toLocaleString()}
                     </Badge>
                   </div>
                 </div>
@@ -329,10 +329,10 @@ export default function Home() {
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center space-x-2">
                       <span className="text-3xl font-bold text-red-600">
-                        ${product.price}
+                        ¥{product.price.toLocaleString()}
                       </span>
                       <span className="text-2xl text-slate-500 line-through">
-                        ${product.originalPrice}
+                        ¥{product.originalPrice!.toLocaleString()}
                       </span>
                     </div>
                   </div>
@@ -347,7 +347,7 @@ export default function Home() {
                     })}
                     className="w-full bg-red-600 hover:bg-red-700"
                   >
-                    Add to Cart
+                    カートに追加
                   </Button>
                 </CardContent>
               </Card>
@@ -367,11 +367,11 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="text-xl font-bold">Niiro</div>
-                  <div className="text-sm text-slate-400">SAUNA</div>
+                  <div className="text-sm text-slate-400">サウナ</div>
                 </div>
               </div>
               <p className="text-slate-300 mb-4">
-                Your trusted partner for premium sauna equipment and wellness solutions.
+                プレミアムサウナ機器とウェルネスソリューションの信頼できるパートナー。
               </p>
               <div className="flex space-x-4">
                 <a href="https://www.instagram.com/revitalizesauna/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
@@ -392,35 +392,35 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Shop</h4>
+              <h4 className="text-lg font-semibold mb-4">ショップ</h4>
               <ul className="space-y-2">
-                <li><Link href="/products" className="text-slate-300 hover:text-white">All Products</Link></li>
-                <li><Link href="/products?category=sauna-equipment" className="text-slate-300 hover:text-white">Sauna Equipment</Link></li>
-                <li><Link href="/products?category=wellness-products" className="text-slate-300 hover:text-white">Wellness Products</Link></li>
-                <li><Link href="/cart" className="text-slate-300 hover:text-white">Shopping Cart</Link></li>
+                <li><Link href="/products" className="text-slate-300 hover:text-white">すべての商品</Link></li>
+                <li><Link href="/products?category=sauna-equipment" className="text-slate-300 hover:text-white">サウナ機器</Link></li>
+                <li><Link href="/products?category=wellness-products" className="text-slate-300 hover:text-white">ウェルネス商品</Link></li>
+                <li><Link href="/cart" className="text-slate-300 hover:text-white">ショッピングカート</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Support</h4>
+              <h4 className="text-lg font-semibold mb-4">サポート</h4>
               <ul className="space-y-2">
-                <li><Link href="/marketing/about" className="text-slate-300 hover:text-white">About Us</Link></li>
-                <li><Link href="/marketing/contact" className="text-slate-300 hover:text-white">Contact</Link></li>
-                <li><Link href="/marketing/services" className="text-slate-300 hover:text-white">Services</Link></li>
-                <li><Link href="/shipping" className="text-slate-300 hover:text-white">Shipping Info</Link></li>
+                <li><Link href="/marketing/about" className="text-slate-300 hover:text-white">会社概要</Link></li>
+                <li><Link href="/marketing/contact" className="text-slate-300 hover:text-white">お問い合わせ</Link></li>
+                <li><Link href="/marketing/services" className="text-slate-300 hover:text-white">サービス</Link></li>
+                <li><Link href="/shipping" className="text-slate-300 hover:text-white">配送情報</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Account</h4>
+              <h4 className="text-lg font-semibold mb-4">アカウント</h4>
               <ul className="space-y-2">
-                <li><Link href="/login" className="text-slate-300 hover:text-white">Login</Link></li>
-                <li><Link href="/register" className="text-slate-300 hover:text-white">Register</Link></li>
-                <li><Link href="/orders" className="text-slate-300 hover:text-white">Order History</Link></li>
-                <li><Link href="/wishlist" className="text-slate-300 hover:text-white">Wishlist</Link></li>
+                <li><Link href="/login" className="text-slate-300 hover:text-white">ログイン</Link></li>
+                <li><Link href="/register" className="text-slate-300 hover:text-white">新規登録</Link></li>
+                <li><Link href="/orders" className="text-slate-300 hover:text-white">注文履歴</Link></li>
+                <li><Link href="/wishlist" className="text-slate-300 hover:text-white">お気に入り</Link></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-slate-700 mt-12 pt-8 text-center text-slate-300">
-            <p>&copy; 2024 Niiro. All rights reserved. | Premium Sauna Equipment & Wellness Solutions</p>
+            <p>&copy; 2024 Niiro. All rights reserved. | プレミアムサウナ機器 & ウェルネスソリューション</p>
           </div>
         </div>
       </footer>
