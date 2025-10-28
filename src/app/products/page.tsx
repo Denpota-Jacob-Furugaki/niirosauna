@@ -8,12 +8,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { products, categories, searchProducts, getFeaturedProducts, getNewArrivals, getOnSaleProducts } from "@/lib/products";
+import { useCartStore } from "@/lib/cart";
 
 export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortBy, setSortBy] = useState("name");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const { addItem } = useCartStore();
 
   const filteredProducts = useMemo(() => {
     let filtered = products;
@@ -272,12 +274,16 @@ export default function ProductsPage() {
                   </Button>
                   <Button 
                     variant="outline" 
-                    asChild
+                    onClick={() => addItem({
+                      id: product.id,
+                      name: product.name,
+                      price: product.price,
+                      image: product.thumbnail,
+                      slug: product.slug
+                    })}
                     disabled={!product.inStock}
                   >
-                    <Link href={`https://niiro.win-win.partners/store/product/${product.slug}`}>
-                      Add to Cart
-                    </Link>
+                    Add to Cart
                   </Button>
                 </div>
               </CardContent>

@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useCartStore } from "@/lib/cart";
 
 export default function Home() {
+  const { getTotalItems } = useCartStore();
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Header */}
@@ -28,10 +31,15 @@ export default function Home() {
             </nav>
             <div className="flex items-center space-x-4">
               <Button variant="outline" asChild>
-                <Link href="https://niiro.win-win.partners/login">Login</Link>
+                <Link href="/login">Login</Link>
+              </Button>
+              <Button variant="outline" asChild className="relative">
+                <Link href="/cart">
+                  Cart ({getTotalItems()})
+                </Link>
               </Button>
               <Button asChild>
-                <Link href="https://niiro.win-win.partners/store">View Products</Link>
+                <Link href="/products">View Products</Link>
               </Button>
             </div>
           </div>

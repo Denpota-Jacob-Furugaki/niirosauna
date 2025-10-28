@@ -1,3 +1,5 @@
+"use client";
+
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -5,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getProductBySlug, getRelatedProducts, categories } from "@/lib/products";
+import { useCartStore } from "@/lib/cart";
 
 interface ProductPageProps {
   params: {
@@ -14,6 +17,7 @@ interface ProductPageProps {
 
 export default function ProductPage({ params }: ProductPageProps) {
   const product = getProductBySlug(params.slug);
+  const { addItem } = useCartStore();
   
   if (!product) {
     notFound();
@@ -166,20 +170,24 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="flex space-x-4">
               <Button 
                 size="lg" 
-                asChild
+                onClick={() => addItem({
+                  id: product.id,
+                  name: product.name,
+                  price: product.price,
+                  image: product.thumbnail,
+                  slug: product.slug
+                })}
                 disabled={!product.inStock}
                 className="flex-1"
               >
-                <Link href={`https://niiro.win-win.partners/store/product/${product.slug}`}>
-                  {product.inStock ? 'Add to Cart' : 'Notify When Available'}
-                </Link>
+                {product.inStock ? 'Add to Cart' : 'Notify When Available'}
               </Button>
               <Button 
                 size="lg" 
                 variant="outline"
                 asChild
               >
-                <Link href={`https://niiro.win-win.partners/store/product/${product.slug}`}>
+                <Link href="/checkout">
                   Buy Now
                 </Link>
               </Button>
